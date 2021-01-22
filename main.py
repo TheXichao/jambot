@@ -25,7 +25,16 @@ async def on_member_remove(member):
 async def boop(ctx):
   await ctx.send('Boo!')
 
+@client.command
+async def ping(ctx):
+  await ctx.send(f'Pong! {client.latency * 1000}ms')
 
+@client.command(aliases=['8ball'])
+async def _8ball(ctx,*,question):
+  response = [
+    'likely','maybe','unlikely','um sure', 'poopoo'
+  ]
+  await ctx.send(f'Question: {question}\nAnswer: {random.choice(response)}')
 
 
 
