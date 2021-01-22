@@ -21,7 +21,7 @@ async def on_member_join(member):
 
 @client.event
 async def on_member_remove(member):
-  print(f'{member} died')
+  print(f'{member} died, we might miss them')
 
 @client.command()
 async def boop(ctx):
@@ -34,7 +34,7 @@ async def ping(ctx):
 @client.command(aliases=['8ball'])
 async def _8ball(ctx,*,question):
   response = [
-    'likely','maybe','unlikely','um sure', 'poopoo'
+    'likely','maybe','unlikely','um sure', 'poopoo', 'Yes.', 'check Google idiot i\'ve got better things to do'
   ]
   await ctx.send(f'Question: {question}\nAnswer: {random.choice(response)}')
 
