@@ -1,11 +1,17 @@
-from flask import Flask
+from flask import Flask,render_template
 from threading import Thread
 
 app = Flask('')
 
-@app.route('/')
+
+#--------------------------------------------
+@app.route('/',methods=['GET', 'POST'])
 def home():
-    return "<a href='https://discord.com/api/oauth2/authorize?client_id=802228905380675625&permissions=0&scope=bot'>add jambob</a>"
+    return render_template("index.html")
+#--------------------------------------------------
+
+
+
 
 def run():
   app.run(host='0.0.0.0',port=8080)
