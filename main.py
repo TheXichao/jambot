@@ -10,13 +10,12 @@ from discord.ext import commands
 client = commands.Bot(command_prefix = '.')
 
 @client.event
-async def on_ready(message):
+async def on_ready():
   print('Bot is ready')
-  await message.channel.send(f'WHHAT {member} spawned!!')
+
 
 @client.event
-async def on_member_join(member,message):
-  await message.channel.send(f'WHHAT {member} spawned!!')
+async def on_member_join(member):
   print(f'WHHAT {member} spawned!!')
   
 
