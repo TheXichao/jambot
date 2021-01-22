@@ -21,6 +21,15 @@ async def on_member_join(member):
 async def on_member_remove(member):
   print(f'{member} died')
 
+@client.command()
+async def boop(ctx):
+  await ctx.send('Boo!')
+
+
+
+
+
+
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
