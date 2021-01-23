@@ -18,6 +18,13 @@ def poopoo():
 def page_not_found(e):
     return redirect('/')
 
+
+@app.route('/animation',methods=['GET'])
+def somethingrandom():
+  return render_template("veeka.html")
+
+
+
 def run():
   app.run(host='0.0.0.0',port=8080)
 
