@@ -10,7 +10,13 @@ def home():
     return render_template("index.html")
 #--------------------------------------------------
 
+@app.route('/test',methods=['GET'])
+def poopoo():
+  return render_template("pp.html")
 
+@app.route('/chess',methods=['GET','POST'])
+def yeet():
+  return render_template("chess.html")
 
 
 def run():
