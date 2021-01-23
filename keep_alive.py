@@ -14,11 +14,6 @@ def home():
 def poopoo():
   return render_template("pp.html")
 
-@app.route('/chess',methods=['GET','POST'])
-def yeet():
-  return render_template("chess.html")
-
-
 def run():
   app.run(host='0.0.0.0',port=8080)
 
