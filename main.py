@@ -6,18 +6,20 @@ import random
 from replit import db
 from keep_alive import keep_alive
 from discord.ext import commands
+import time
 
 client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
   print('Bot is ready')
+  await channel.send_message('Fuck, im alive')
 
 
 @client.event
 async def on_member_join(member):
-  print(f'WHHAT {member} spawned!!')
-  
+  print(f'{member} joined')
+  await channel.send_message(f'WHHAT {member} spawned!!')
 
 @client.event
 async def on_member_remove(member):
@@ -62,6 +64,22 @@ async def unban(ctx, *, member):
       await ctx.guild.unban(user)
       await ctx.send('unbanned {user}'.format(user=memberName))
       return
+
+@client.command
+async def play(ctx,*,song):
+  author = message.author.
+  await VoiceClient.connect(channel)
+
+
+
+
+@client.command()
+async def spam(ctx,t,*,message):
+  for _ in range(int(t)):
+    await ctx.send(message)
+    time.sleep(1)
+    
+
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
