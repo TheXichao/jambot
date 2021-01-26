@@ -19,7 +19,9 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
   print(f'{member} joined')
-  await channel.send_message(f'WHHAT {member} spawned!!')
+  for channel in member.guild.channels:
+    if str(channel)=="logs":
+      channel.send_message(f'WHHAT {member} spawned!!')
 
 @client.event
 async def on_member_remove(member):
@@ -65,10 +67,10 @@ async def unban(ctx, *, member):
       await ctx.send('unbanned {user}'.format(user=memberName))
       return
 
-@client.command
-async def play(ctx,*,song):
-  author = message.author.
-  await VoiceClient.connect(channel)
+# @client.command
+# async def play(ctx,*,song):
+#   author = message.author.
+#   await VoiceClient.connect(channel)
 
 
 
