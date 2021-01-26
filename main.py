@@ -12,8 +12,8 @@ client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
-  print('Bot is ready')
-  await channel.send_message('Fuck, im alive')
+  print('Bot is ready'):
+    if channel == 'logs':channel.send_message('Fuck, im alive')
 
 
 @client.event
@@ -21,7 +21,7 @@ async def on_member_join(member):
   print(f'{member} joined')
   for channel in member.guild.channels:
     if str(channel)=="logs":
-      channel.send_message(f'WHHAT {member} spawned!!')
+      await channel.send_message(f'WHHAT {member} spawned!!')
 
 @client.event
 async def on_member_remove(member):
