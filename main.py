@@ -12,8 +12,8 @@ client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
-  print('Bot is ready'):
-    if channel == 'logs':channel.send_message('Fuck, im alive')
+  print('Bot is ready')
+
 
 
 @client.event
