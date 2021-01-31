@@ -63,6 +63,10 @@ async def levelUp(users, user, message):
         await message.channel.send(f'{user.mention} has leveled up to level {lvl_end}')
         users[f'{user.id}']['level'] = lvl_end
 
+        
+
+
+
 @client.command()
 async def level(ctx, member: discord.Member = None):
     if not member:
@@ -81,39 +85,63 @@ async def level(ctx, member: discord.Member = None):
 
 @client.command()
 async def spam(ctx,t,*,message):
-  for _ in range(int(t)):
-    await ctx.send(message)
-    time.sleep(1)
+  if ctx.author.guild_permissions.administrator:
+    for _ in range(int(t)):
+      await ctx.send(message)
+      time.sleep(1)
+  else:
+    print('oh no no, you naughty naughty')
     
 @client.command(aliases=['8ball','is'])
 async def _8ball(ctx,*,question):
   response = [
-"As I see it, yes."
-"Ask again later."
-"Better not tell you now."
-"Cannot predict now."
-"Concentrate and ask again."
-"Don’t count on it."
-"It is certain."
-"It is decidedly so."
-"Most likely."
-"My reply is no."
-"My sources say no."
-"Outlook not so good."
-"Outlook good."
-"Reply hazy, try again."
-"Signs point to yes."
-"Very doubtful."
+"As I see it, yes.",
+"Ask again later.",
+"Better not tell you now.",
+"Cannot predict now.",
+"Concentrate and ask again.",
+"Don’t count on it.",
+"It is certain.",
+"It is decidedly so.",
+"Most likely.",
+"My reply is no.",
+"My sources say no.",
+"Outlook not so good.",
+"Outlook good.",
+"Reply hazy, try again.",
+"Signs point to yes.",
+"Very doubtful.",
 "Without a doubt."
-"Yes."
-"Yes – definitely."
+"Yes.",
+"Yes – definitely.",
 "You may rely on it."
   ]
   await ctx.send(f'Question: {question}\nAnswer: {random.choice(response)}')
 
 @client.command()
+async def add(ctx,role: discord.Role,*,users):
+  if ctx.author.guild_permissions.administrator:
+    users.split()
+    for user in users:
+      user = discord.Member
+      await user.add_roles(role)
+      print(f'{user.mention} had been assigned {role.mention}')
+
+@client.command()
+async def remove(ctx,role: discord.Role,*,users):
+  if ctx.author.guild_permissions.administrator:
+    users.split()
+    for user in users:
+      user = discord.Member
+      await user.remove_roles(role)
+      print(f'{user.mention} had been assigned {role.mention}')
+
+@client.command()
 async def clear(ctx,amount=6):
-  await ctx.channel.purge(limit=amount)
-  
+  if ctx.author.guild_permissions.administrator:
+    await ctx.channel.purge(limit=amount)
+  else:
+    print('hmm')
+
 keep_alive()
 client.run(os.getenv('TOKEN'))
