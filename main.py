@@ -18,59 +18,54 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member):
-  print(f'{member} joined')
-  for channel in member.guild.channels:
-    if str(channel)=="logs":
-      await channel.send_message(f'WHHAT {member} spawned!!')
+  with open('users.json','r') as f:
+    users = json.load(f)
+
+    await  updateData(users, member)
+
+
+    
+  with open('users.json','w') as f:
+    json.dump(users,f)
+
+
+@client.event
+async def on_message(message):
+  with open('users.json','r') as f:
+    users = json.load(f)
+
+  await updateData(users, message.author)
+  await addExperience(users,message.author, 5)
+  await levelUp(users, message.author, message.channel)
+
+
+  with open('users.json','w') as f:
+    json.dump(users,f)
+
+async def updateData(users,user):
+  if not user.id in users:
+    users[user.id] = {}
+    users[user.id]['experience'] = 0
+    users[user.id]['level'] = 1
+
+async def addExperience(users, user, exp):
+  users[user.id]['experience'] += exp
+
+async def levelUp(users, user, channel):
+  experience = users[user.id]['experience']
+  lvlStart = users[user.id]['level']
+  lvlEnd = int(experience ** (1/4))
+
+  if lvlStart < lvlEnd:
+    await client.send_message(channel,'Congrats {} has leveled up to level {}'.format(user.mention,lvlEnd))
+    users[user.id]['level'] = lvlEnd
+
+  
 
 @client.event
 async def on_member_remove(member):
   print(f'{member} died, we might miss them')
 
-# @client.command()
-# async def boop(ctx):
-#   await ctx.send('Boo!')
-
-# @client.command()
-# async def ping(ctx):
-#   await ctx.send(f'Pong! {client.latency * 1000}ms')
-
-# @client.command(aliases=['8ball'])
-# async def _8ball(ctx,*,question):
-#   response = [
-#     'likely','maybe','unlikely','um sure', 'poopoo', 'Yes.', 'check Google idiot i\'ve got better things to do'
-#   ]
-#   await ctx.send(f'Question: {question}\nAnswer: {random.choice(response)}')
-
-# @client.command()
-# async def clear(ctx,amount=6):
-#   await ctx.channel.purge(limit=amount)
-
-# @client.command()
-# async def kick(ctx, member : discord.Member, *,reason='nope'):
-#   await member.kick(reason=reason)
-
-# @client.command()
-# async def ban(ctx, member : discord.Member, *,reason='no'):
-#   await member.ban(reason=reason)
-
-# @client.command()
-# async def unban(ctx, *, member):
-#   bannedUsers= await ctx.guild.bans()
-#   memberName, memberDiscriminator = member.split('#')
-
-#   for banEntry in bannedUsers:
-#     user = banEntry.user
-
-#     if(user.name,user.discriminator) == (memberName,memberDiscriminator):
-#       await ctx.guild.unban(user)
-#       await ctx.send('unbanned {user}'.format(user=memberName))
-#       return
-
-# @client.command
-# async def play(ctx,*,song):
-#   author = message.author.
-#   await VoiceClient.connect(channel)
 
 
 
