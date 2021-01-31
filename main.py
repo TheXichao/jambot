@@ -85,6 +85,10 @@ async def spam(ctx,t,*,message):
     await ctx.send(message)
     time.sleep(1)
     
+@client.command(alias = [is,8ball])
+async def eightball(ctx,*,message):
+  
+
 
 
 keep_alive()
