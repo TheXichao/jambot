@@ -85,10 +85,31 @@ async def spam(ctx,t,*,message):
     await ctx.send(message)
     time.sleep(1)
     
-@client.command(alias = [is,8ball])
-async def eightball(ctx,*,message):
-  
-
+@client.command(aliases=['8ball','is'])
+async def _8ball(ctx,*,question):
+  response = [
+"As I see it, yes."
+"Ask again later."
+"Better not tell you now."
+"Cannot predict now."
+"Concentrate and ask again."
+"Don’t count on it."
+"It is certain."
+"It is decidedly so."
+"Most likely."
+"My reply is no."
+"My sources say no."
+"Outlook not so good."
+"Outlook good."
+"Reply hazy, try again."
+"Signs point to yes."
+"Very doubtful."
+"Without a doubt."
+"Yes."
+"Yes – definitely."
+"You may rely on it."
+  ]
+  await ctx.send(f'Question: {question}\nAnswer: {random.choice(response)}')
 
 
 keep_alive()
