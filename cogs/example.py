@@ -4,7 +4,7 @@ from discord.ext import commands
 class Example(commands.Cog):
 
   def __init__(self,client):
-    self.clent = client
+    self.client = client
 
   @commands.Cog.listener()
   async def on_ready(self):
