@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from random import random
+import random
 
 class general(commands.Cog):
 
@@ -9,7 +9,7 @@ class general(commands.Cog):
 
   @commands.command()
   async def ping(self,ctx):
-    await ctx.send('Pong!')
+    await ctx.send(f'the latency is {self.client.latency*1000}ms')
 
   @commands.Cog.listener()
   async def on_ready(self):

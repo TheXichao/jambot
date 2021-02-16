@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
-from time import sleep
+import time
 
-class moderator(commands.Cog):
+class moderation(commands.Cog):
 
   def __init__(self,client):
     self.client = client
@@ -41,15 +41,32 @@ class moderator(commands.Cog):
 
   @commands.command()
   @commands.has_permissions(manage_channels = True)
-  async def spam(self,ctx,reps,*,content):
-    for rep in range(reps):
-      ctx.send(content)
-      sleep(1)
+  async def spam(self,ctx,repetitions = 3,*,message):
+    for _ in range(int(repetitions)):
+      await ctx.send(message)
+      time.sleep(1)
 
+  @commands.command()
+  @commands.has_permissions(manage_channels = True)
+  async def clear(self,ctx,amount = 5):
+    await ctx.channel.purge(limit = amount)
+    print(f'{ctx.author} cleared {amount} messages')
 
+  @commands.command()
+  @commands.has_permissions(administrator = True)
+  async def explosivedm(self,ctx, target: discord, amount=1, *,message):
+    for _ in range(amount):
+      await target.send(message)
+  
+  @commands.command()
+  @commands.has_permissions(administrator = True)
+  async def dm(self,ctx, target: discord.User, *,message):
+    await target.send(message)
+    
   @commands.Cog.listener()
   async def on_ready(self):
-    print('moderator_commands has been loaded') 
+    print('moderation_commands has been loaded') 
+    
 
 def setup(client):
-  client.add_cog(moderator(client))
+  client.add_cog(moderation(client))

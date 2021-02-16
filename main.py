@@ -15,6 +15,7 @@ def get_prefix(client,message):
     return prefixes[str(message.guild.id)]
 
 client = commands.Bot(command_prefix= get_prefix)
+client.remove_command('help')
 
 
 @client.command()
@@ -63,7 +64,14 @@ async def set_prefix(ctx,prefix):
     json.dump(prefixes, f)
   await ctx.send(f'Prefix is now {prefix}')
 
+# @client.group(invoke_without_command=
+# True)
+# async def help(ctx):
 
+#   em = discord.Embed(title = 'help')
+
+# @client.command()
+# await def help(ctx)
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
