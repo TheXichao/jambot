@@ -14,8 +14,8 @@ def get_prefix(client,message):
 
     return prefixes[str(message.guild.id)]
 
-client = commands.Bot(command_prefix= get_prefix)
-client.remove_command('help')
+client = commands.Bot(command_prefix=get_prefix, intents=discord.Intents.all(), owner_id=536244741394923532)
+# client.remove_command('help')
 
 
 @client.command()
@@ -63,6 +63,30 @@ async def set_prefix(ctx,prefix):
   with open('prefixes.json','w') as f:
     json.dump(prefixes, f)
   await ctx.send(f'Prefix is now {prefix}')
+
+@client.event
+async def on_command_error(ctx, error):
+	if isinstance(error, commands.MissingRequiredArgument):
+		await ctx.reply("You are missing a required argument.")
+	elif isinstance(error, commands.MissingPermissions):
+		if len(error.missing_perms) == 1:
+			perms = ''.join(error.missing_perms)
+		else:
+			perms = ', '.join(error.missing_perms)
+		await ctx.reply(f"You need the following perms: `{perms}`.")
+	elif isinstance(error, commands.BotMissingPermissions):
+		if len(error.missing_perms) == 1:
+			perms = ''.join(error.missing_perms)
+		else:
+			perms = ', '.join(error.missing_perms)
+		await ctx.reply(f"I need the following perms: `{perms}`.")
+
+
+	debug = client.get_user(client.owner_id)
+	await debug.send(f"Error in **{ctx.guild.name}**:\n```{str(error)}```")
+	raise error
+
+  
 
 # @client.group(invoke_without_command=
 # True)
