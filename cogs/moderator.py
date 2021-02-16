@@ -54,11 +54,12 @@ class moderation(commands.Cog):
 
   @commands.command()
   @commands.has_permissions(administrator = True)
-  async def explosivedm(self,ctx, target: discord, amount=1, *,message):
+  async def explosivedm(self,ctx, target: discord.User, amount=1, *,message):
     for _ in range(amount):
       await target.send(message)
+      time.sleep(1)
   
-  @commands.command()
+  @commands.command(aliases=['spamDM'])
   @commands.has_permissions(administrator = True)
   async def dm(self,ctx, target: discord.User, *,message):
     await target.send(message)
