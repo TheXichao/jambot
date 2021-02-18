@@ -20,17 +20,6 @@ All you need to know about the library is defined inside here, even code that I 
 
 5. You're done, enjoy your bot!
 
-## FAQ
-Q: I don't see my bot on my server!<br>
-A: Invite it by using this URL: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID&scope=bot<br>
-Remember to replace **CLIENT_ID** with your bot client ID
-
-Q: There aren't that many commands here...<br>
-A: Yes, I will only provide a few commands to get you started, maybe adding more later.
-
-Q: Why the beer with the discord logo?<br>
-A: Because the framework is made so simple that even a drunk guy can set it up.
-
 
 # Optional tools
 ### Flake8
