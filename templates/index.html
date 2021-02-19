@@ -1,6 +1,38 @@
 <html>
 <head>
     <style type="text/css">
+    .navContainer {
+  align-items: center; /* Aligns items so they are centered vertically */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4, 1fr));
+  color: #ccc;
+  text-align: center;
+}
+.navContainer h1 {
+  grid-row: 1;
+  grid-column: 1 / 5;
+  outline: 1px dotted coral;
+}
+.navContainer div {
+  grid-row: 2;
+  height: 25px;
+  line-height: 25px;
+  outline: 1px dotted coral;
+}
+
+@media (min-width: 800px) {
+  .navContainer {
+    grid-template-columns: repeat(auto-fit, minmax(5, 1fr));
+  }
+  .navContainer h1 {
+    grid-row: 1;
+    grid-column: 3 / 4;
+  }
+  .navContainer div {
+    grid-row: 1;
+  }
+}
+
 @keyframes tipsy {
   0 {
     transform: translateX(-50%) translateY(-50%) rotate(0deg);
@@ -78,11 +110,23 @@ h1::before {
     grid-auto-flow: column;
   }
 } */
-
+  
     </style>
+    <script>
+      function URL(url) {
+    location.href = url;
+}
+    </script>
 <title>jambot</title>
 </head>
 <body>
+  <nav class="navContainer">
+    <!-- <h1>Add Jambot!</h1> -->
+    <div onclick="window.open('https://discord.gg/U66qBE9pG3')">Click here to join my server</div>
+    <!-- <div>Nav 2</div>
+    <div>Nav 3</div>
+    <div>Nav 4</div> -->
+  </nav>  
   <div>
   <h1>
   <a href="https://discord.com/api/oauth2/authorize?client_id=802228905380675625&permissions=8&scope=bot" target="_blank">Jambot</a>
