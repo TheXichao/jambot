@@ -8,35 +8,35 @@ class Prefix(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        with open('/home/runner/Jambotprefixes.json', 'r') as f:
+        with open('../prefixes.json', 'r') as f:
             prefixes = json.load(f)
 
         prefixes[str(guild.id)] = '.'
 
-        with open('/home/runner/Jambotprefixes.json', 'w') as f:
+        with open('../prefixes.json', 'w') as f:
             json.dump(prefixes, f, indent=4)
 
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
-        with open('/home/runner/Jambotprefixes.json', 'r') as f:
+        with open('../prefixes.json', 'r') as f:
             prefixes = json.load(f)
 
         prefixes.pop(str(guild.id))
 
-        with open('/home/runner/Jambotprefixes.json', 'w') as f:
+        with open('../prefixes.json', 'w') as f:
             json.dump(prefixes, f)
 
 
     @commands.command()
     @commands.has_permissions(administrator=True, manage_guild=True)
     async def prefix(self, ctx, prefix):
-        with open('/home/runner/Jambot/prefixes.json', 'r') as f:
+        with open('..//prefixes.json', 'r') as f:
             prefixes = json.load(f)
 
         prefixes[str(ctx.guild.id)] = prefix
 
-        with open('/home/runner/Jambotprefixes.json', 'w') as f:
+        with open('../prefixes.json', 'w') as f:
             json.dump(prefixes, f)
         await ctx.send(f'Prefix is now {prefix}')
 
