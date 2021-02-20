@@ -7,7 +7,7 @@
   "prefix": [
     "ja"
   ],
-  "activity": "website: https://bot.fore.ga",
+  "activity": "prefix: ja | website: https://bot.fore.ga",
   "activity_type": "playing|watching|listening|competing",
   "status_type": "online|idle|dnd",
   "alexflipnote_api": "nice_token_you_got_here",
