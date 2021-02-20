@@ -22,6 +22,7 @@ class HTTPSession(aiohttp.ClientSession):
         """
         if not self.closed:
             self.close()
+        # self.close
 
 
 session = HTTPSession()

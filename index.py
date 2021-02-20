@@ -11,14 +11,14 @@ from utils.data import Bot, HelpFormat
 config = default.config()
 print("Logging in...")
 
-def get_prefix(client, message):
-    with open('prefixes.json', 'r') as f:
-        prefixes = json.load(f)
+# def get_prefix(client, message):
+#     with open('prefixes.json', 'r') as f:
+#         prefixes = json.load(f)
 
-    return prefixes[str(message.guild.id)]
+#     return prefixes[str(message.guild.id)]
 
 bot = Bot(
-    command_prefix=get_prefix, prefix=config["prefix"],
+    command_prefix=config["prefix"], prefix=config["prefix"],
     owner_ids=config["owners"], command_attrs=dict(hidden=True), help_command=HelpFormat(),
     intents=discord.Intents(  # kwargs found at https://discordpy.readthedocs.io/en/latest/api.html?highlight=intents#discord.Intents
         guilds=True, members=True, messages=True, reactions=True, presences=True
